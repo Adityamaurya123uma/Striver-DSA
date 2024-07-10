@@ -1,5 +1,5 @@
-# Better Approach
-int longestSubarrayWithSumK(vector<int> a, long long k) {
+# Better Approach (FOR POSITIVES AND NEGATIVES THIS IS THE OPTIMAL APPROACH)
+int longestSubarrayWithSumK(vector<int> a, long long k) 0
    map<long long, int> preSumMap;
    long long sum = 0;
    int maxLen = 0;
@@ -20,3 +20,23 @@ int longestSubarrayWithSumK(vector<int> a, long long k) {
    }
   return maxLen;
 }
+
+# Optimal Approach for the case with only positives and zero
+int longestSubarrayWithSumK(vectore<int> a, long long k){
+   int left = 0, right = 0;
+   long long sum = a[0];
+   int maxLen = 0;
+   int n = a.size();
+   while(right < n) {
+      while(left <= right && sum > k){
+         sum -= a[left];
+         left++;
+      }
+      if (sum == k) {
+         maxLen = max(maxLen, right - left + 1);
+      }
+      right++;
+      if(right < n) sum += a[right];
+   }
+}
+return maxLen;
